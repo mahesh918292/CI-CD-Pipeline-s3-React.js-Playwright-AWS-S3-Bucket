@@ -22,6 +22,9 @@ jobs:
       - name: 📦 Install Dependencies
         run: npm ci
 
+      - name: 🌐 Install Playwright Browsers
+        run: npx playwright install
+
       - name: 🚦 Run Dev and Test (Playwright + React)
         run: npm run dev-and-test
 
@@ -41,4 +44,6 @@ jobs:
           AWS_REGION: ap-south-1
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
         run: |
+          aws configure set default.region $AWS_REGION
+          aws configure set output json
           aws s3 sync ./build s3://$AWS_S3_BUCKET --delete
