@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "npx playwright test",
-    "dev-and-test": "concurrently -k \"vite\" \"wait-on http://localhost:5173 && npx playwright test\""
+"dev-and-test": "concurrently -k --success first \"vite\" \"wait-on http://localhost:5173 && npx playwright test\""
   },
   "dependencies": {
     "allure-playwright": "^3.3.2",
