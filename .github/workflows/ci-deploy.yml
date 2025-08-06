@@ -44,8 +44,4 @@ jobs:
           AWS_REGION: ap-south-1
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
         run: |
-          aws configure set default.region $AWS_REGION
-          aws configure set output json
           aws s3 sync ./dist s3://$AWS_S3_BUCKET --delete
-      - name: 🔍 Verify S3 Upload
-        run: aws s3 ls s3://${{ secrets.AWS_S3_BUCKET }} --recursive --human-readable
