@@ -34,8 +34,8 @@ jobs:
       - name: 💾 Install AWS CLI
         run: |
           curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-          unzip awscliv2.zip
-          sudo ./aws/install
+          unzip -o awscliv2.zip
+          sudo ./aws/install --update
 
       - name: 🚀 Deploy to S3
         env:
@@ -47,3 +47,6 @@ jobs:
           aws configure set default.region $AWS_REGION
           aws configure set output json
           aws s3 sync ./build s3://$AWS_S3_BUCKET --delete
+
+      - name: 🔍 Verify S3 Upload
+        run: aws s3 ls s3://${{ secrets.AWS_S3_BUCKET }} --recursive --human-readable
