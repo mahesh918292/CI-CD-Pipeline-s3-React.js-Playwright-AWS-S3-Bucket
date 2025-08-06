@@ -46,7 +46,6 @@ jobs:
         run: |
           aws configure set default.region $AWS_REGION
           aws configure set output json
-          aws s3 sync ./build s3://$AWS_S3_BUCKET --delete
-
+          aws s3 sync ./dist s3://$AWS_S3_BUCKET --delete
       - name: 🔍 Verify S3 Upload
         run: aws s3 ls s3://${{ secrets.AWS_S3_BUCKET }} --recursive --human-readable
