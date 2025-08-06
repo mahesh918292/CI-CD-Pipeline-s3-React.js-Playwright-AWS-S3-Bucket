@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "npx playwright test",
-    "dev-and-test": "start-server-and-test dev http://localhost:5173 test"
+    "dev-and-test": "concurrently -k \"vite\" \"wait-on http://localhost:5173 && npx playwright test\""
   },
   "dependencies": {
     "allure-playwright": "^3.3.2",
@@ -29,7 +29,8 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0",
+    "start-server-and-test": "^2.x.x",
     "vite": "^7.0.4",
-    "start-server-and-test": "^2.x.x"
+    "wait-on": "^8.0.4"
   }
 }
